@@ -1,4 +1,4 @@
-import { DeliveryClient } from "kentico-cloud-delivery";
+import { DeliveryClient } from "@kentico/kontent-delivery";
 
 export default class RichTextClient {
   constructor(projectId, apiKey) {
@@ -15,7 +15,7 @@ export default class RichTextClient {
         this.deliveryClient
           .item(sourceItemCodename)
           .elementsParameter([richTextElementCodename])
-          .getPromise()
+          .toPromise()
           .then(response => {
             let htmlContent = response.item[richTextElementCodename].value;
             let content = this._removeHTML(htmlContent);

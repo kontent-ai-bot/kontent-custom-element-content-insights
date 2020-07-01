@@ -24,7 +24,7 @@
 import Insights from "./Insights";
 import Suggestions from "./Suggestions";
 
-import DefaultConfig from "@/default-config.js";
+import DefaultSuggestions from "@/default-suggestions.js";
 import { getElementValue } from "@/helpers/CustomElementHelper.js";
 import RichTextClient from "@/clients/RichTextClient.js";
 
@@ -32,7 +32,7 @@ export default {
   props: ["element", "context", "value"],
   data() {
     return {
-      suggestions: DefaultConfig.suggestions,
+      suggestions: DefaultSuggestions,
       content: null,
       maxKeywords: 8
     };

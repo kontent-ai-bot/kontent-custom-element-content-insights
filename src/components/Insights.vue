@@ -2,6 +2,11 @@
   <v-layout>
     <v-flex>
       <v-list two-line>
+        <v-subheader v-if="value && value.lastAnalyzed">
+          <v-icon>time</v-icon>
+          Last analyzed: {{value.lastAnalyzed}}
+        </v-subheader>
+        <v-divider></v-divider>
         <v-subheader>
           <v-icon>alarm</v-icon>Reading Time:
         </v-subheader>
@@ -76,9 +81,6 @@ export default {
         readingTime: null,
         sentiment: null
       };
-    },
-    value() {
-      console.log(this.value);
     }
   },
   data() {
@@ -88,7 +90,6 @@ export default {
   },
   methods: {
     setKeywords(keywords) {
-      console.log(keywords);
       this.newValue.keywords = keywords;
       this.checkNewValueReady();
     },
@@ -105,6 +106,7 @@ export default {
     },
     checkNewValueReady() {
       if (this.newValue.keywords && this.newValue.readingTime && this.newValue.readingTime && this.newValue.sentiment) {
+        this.newValue.lastAnalyzed = new Date().toLocaleString();
         this.$eventBus.$emit("setValue", this.newValue);
       }
     }

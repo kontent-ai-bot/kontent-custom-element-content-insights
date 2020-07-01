@@ -61,8 +61,10 @@ export default {
       this.value = this.element.value ? JSON.parse(this.element.value) : null;
       this.loaded = true;
       this.updateSize();
+      this.changeCursor(element.disabled);
     },
     handleDisable(disableState) {
+      this.changeCursor(disableState);
       this.element.disabled = disableState;
     },
     save(value) {
@@ -87,7 +89,6 @@ export default {
       this.$eventBus.$emit("analyze");
     },
     catchError(err) {
-      console.log(err);
       this.error = err;
     },
     setValue(value) {
@@ -95,6 +96,10 @@ export default {
       this.save(value);
       this.loading = false;
       this.updateSize();
+    },
+    changeCursor(disabled) {
+      if (disabled) document.body.style.cursor = "not-allowed";
+      else document.body.style.cursor = "auto";
     }
   }
 };
