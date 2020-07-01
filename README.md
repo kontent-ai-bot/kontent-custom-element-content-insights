@@ -34,13 +34,13 @@ You will need to add the custom element to a content type filling in the hosted 
 
 The JSON parameters required as as follows:
 
-| Name | Value | Description |
-| ---- | ----- | ----------- |
-|textElements|array| This is the array of text elements you want to have analyzed The specified elements must also be set as readable for the custom element. |
-|richTextElements|array| This is the array of rich text elements you want to have analyzed. If you wish to read from rich text elements, you have to provide the previewApiKey |
-|previewApiKey|string| This is the access key for your [Kontent Delivery Preview API](https://docs.kontent.ai/reference/delivery-api#section/Production-vs.-Preview).|
-|maxKeywrods|int| This is the maximum number of keywords the element will generate. If the text is too short or the language processor is not able to find sufficient number of keywords, the element can potentialy return less keywords than the specified value suggests.|
-|Suggestions|array| This specifies categories of suggestions generated for the given content by the language processor. You can pick whatever combination you'd like from the provided list. If you omit the suggestion property entirely, you'll automatically have access to all available suggestions. If you wish to omit suggestions all together, just set ```"suggestions" : []```.|
+|Required | Name | Value | Description |
+|---------| ---- | ----- | ----------- |
+|* if using text elements|textElements|array| This is the array of text elements you want to have analyzed The specified elements must also be set as readable for the custom element. |
+|* if using rich text elements|richTextElements|array| This is the array of rich text elements you want to have analyzed. If you wish to read from rich text elements, you have to provide the previewApiKey |
+|* if using rich text elements|previewApiKey|string| This is the access key for your [Kontent Delivery Preview API](https://docs.kontent.ai/reference/delivery-api#section/Production-vs.-Preview).|
+|*|maxKeywrods|int| This is the maximum number of keywords the element will generate. If the text is too short or the language processor is not able to find sufficient number of keywords, the element can potentialy return less keywords than the specified value suggests.|
+||Suggestions|array| This specifies categories of suggestions generated for the given content by the language processor. You can pick whatever combination you'd like from the provided list. If you omit the suggestion property entirely, you'll automatically have access to all available suggestions. If you wish to omit suggestions all together, just set ```"suggestions" : []```.|
 
 ```json
 {
