@@ -4,7 +4,7 @@
 There are many different ways in which you can contribute. One of the easiest ways is simply to use our software and provide us with your feedback through the right channel. You can also help us improve the open-source projects by submitting pull requests with code and documentation changes.
 
 ## Where to get support
-Please note that **level of provided support is always determined by the [LICENSE](LICENSE.md)** of a given open-source project. Also, always make sure you use the **[latest version](../../releases)** of any given OS project. We can't provide any help for older versions. We don't want to make things complicated so we try to take the same approach in all our repositories. 
+Please note that the **level of provided support is always determined by the [LICENSE](LICENSE.md)** of a given open-source project. Also, always make sure you use the **[latest version](../../releases)** of any given OS project. We can't provide any help for older versions. We don't want to make things complicated so we try to take the same approach in all our repositories. 
 
 ### I found a bug in a Kentico's open-source project
 <img align="right" width="100" height="100" src="https://i.imgur.com/TYIQdpv.png">
@@ -23,8 +23,7 @@ Our team members and the community monitor these channels on a regular basis.
 ### I want to report a security bug
 <img align="right" width="100" height="100" src="https://i.imgur.com/z82nnJB.png">
 
-Security issues and bugs should be reported privately, via email, to the Kentico Developer Relations Team devrel@kentico.com. You should receive a response within 24 hours. If for some reason you do not, please follow up via email to ensure we received your original message.
-
+Security issues and bugs should be reported privately, via email, to the Kentico Developer Community Team developerscommunity@kentico.com. You should receive a response within 24 hours. If for some reason you do not, please follow up via email to ensure we received your original message.
 
 ### I have an idea for a new feature (or feedback on existing functionality)
 <img align="right" width="100" height="100" src="https://i.imgur.com/rUFkyPy.png">
@@ -67,6 +66,6 @@ Your pull request will now go through extensive checks by the subject matter exp
 ## Code of Conduct
 <img align="right" width="100" height="100" src="https://i.imgur.com/cObdKQy.png">
 
-The Kentico team is committed to fostering a welcoming community, therefore this project has adopted the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). If you have any additional questions or comments, you can contact us directly at devrel@kentico.com.
+The Kentico team is committed to fostering a welcoming community, therefore this project has adopted the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). If you have any additional questions or comments, you can contact us directly at developerscommunity@kentico.com.
 
 ![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/Home/master/CONTRIBUTING.md?pixel)
