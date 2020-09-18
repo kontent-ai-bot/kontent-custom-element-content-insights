@@ -4,8 +4,11 @@ export default class RichTextClient {
   constructor(projectId, apiKey) {
     this.deliveryClient = new DeliveryClient({
       projectId: projectId,
-      enablePreviewMode: true,
-      previewApiKey: apiKey
+      previewApiKey: apiKey,
+      globalQueryConfig: {
+        // Ensures that Preview API is used
+        usePreviewMode: true
+      }
     });
   }
 
