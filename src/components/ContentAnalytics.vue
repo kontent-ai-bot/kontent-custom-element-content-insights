@@ -2,7 +2,9 @@
   <v-container>
     <v-tabs dark>
       <v-tab style="margin-left: 20px;">Content Insights</v-tab>
-      <v-tabs-slider style="height: 5px; margin-left: 20px; background-color: #0a68f5 !important;"></v-tabs-slider>
+      <v-tabs-slider
+        style="height: 5px; margin-left: 20px; background-color: #0a68f5 !important;"
+      ></v-tabs-slider>
     </v-tabs>
     <v-tabs-items>
       <v-tab-item>
@@ -46,7 +48,8 @@ export default {
   },
   watch: {
     element(newVal) {
-      if (newVal.config.suggestions) this.suggestions = newVal.config.suggestions;
+      if (newVal.config.suggestions)
+        this.suggestions = newVal.config.suggestions;
     }
   },
   computed: {
@@ -79,33 +82,51 @@ export default {
     async getTextElementContent() {
       let textElementContent = "";
       if (this.element.config && this.element.config.textElements) {
-        textElementContent = await this.element.config.textElements.reduce(async (previous, current) => {
-          const aggregate = await previous;
-          let elementValue = await getElementValue(current);
-          return `${aggregate} ${elementValue}`;
-        }, "");
+        textElementContent = await this.element.config.textElements.reduce(
+          async (previous, current) => {
+            const aggregate = await previous;
+            let elementValue = await getElementValue(current);
+            return `${aggregate} ${elementValue}`;
+          },
+          ""
+        );
       }
       return textElementContent;
     },
     async getRichTextElementContent() {
       let richTextElementContent = "";
-      if (this.element.config && this.element.config.richTextElements && this.element.config.previewApiKey) {
-        var richTextClient = new RichTextClient(this.context.projectId, this.element.config.previewApiKey);
-        richTextElementContent = await this.element.config.richTextElements.reduce(async (previous, current) => {
-          const aggregate = await previous;
-          try {
-            let elementValue = await richTextClient.getRichTextValue(this.context.item.codename, current);
-            return `${aggregate} ${elementValue}`;
-          } catch (error) {
-            this.$eventBus.$emit("error", error);
-            return `${aggregate}`;
-          }
-        }, "");
+      if (
+        this.element.config &&
+        this.element.config.richTextElements &&
+        this.element.config.previewApiKey
+      ) {
+        var richTextClient = new RichTextClient(
+          this.context.projectId,
+          this.element.config.previewApiKey
+        );
+        richTextElementContent = await this.element.config.richTextElements.reduce(
+          async (previous, current) => {
+            const aggregate = await previous;
+            try {
+              let elementValue = await richTextClient.getRichTextValue(
+                this.context.item.codename,
+                current
+              );
+              return `${aggregate} ${elementValue}`;
+            } catch (error) {
+              this.$eventBus.$emit("error", error);
+              return `${aggregate}`;
+            }
+          },
+          ""
+        );
       }
       return richTextElementContent;
     },
     getMaxKeywords() {
-      return this.element.config && this.element.config.maxKeywords ? this.element.config.maxKeywords : 8;
+      return this.element.config && this.element.config.maxKeywords
+        ? this.element.config.maxKeywords
+        : 8;
     }
   }
 };

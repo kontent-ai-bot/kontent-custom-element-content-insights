@@ -4,7 +4,8 @@
       v-for="(keyword, index) in keywords"
       :key="`${index}_keyword`"
       :small="true"
-    >{{ keyword }}</v-chip>
+      >{{ keyword }}</v-chip
+    >
   </v-flex>
 </template>
 <script>

@@ -5,7 +5,8 @@
       @click="analyze"
       id="analyze"
       :disabled="element.disabled"
-    >Analyze Content</v-btn>
+      >Analyze Content</v-btn
+    >
     <v-layout column>
       <v-flex xs12 v-if="loading">
         <v-progress-linear :indeterminate="true"></v-progress-linear>
@@ -14,7 +15,11 @@
         <v-alert>{{ error }}</v-alert>
       </v-flex>
       <v-flex xs12 v-show="!loading && value">
-        <content-analytics :element="element" :context="context" :value="value"></content-analytics>
+        <content-analytics
+          :element="element"
+          :context="context"
+          :value="value"
+        ></content-analytics>
       </v-flex>
     </v-layout>
   </v-app>

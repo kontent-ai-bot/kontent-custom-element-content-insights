@@ -4,12 +4,10 @@
       <v-list two-line>
         <v-subheader v-if="value && value.lastAnalyzed">
           <v-icon>time</v-icon>
-          Last analyzed: {{value.lastAnalyzed}}
+          Last analyzed: {{ value.lastAnalyzed }}
         </v-subheader>
         <v-divider></v-divider>
-        <v-subheader>
-          <v-icon>alarm</v-icon>Reading Time:
-        </v-subheader>
+        <v-subheader> <v-icon>alarm</v-icon>Reading Time: </v-subheader>
         <v-list-tile>
           <reading-time
             :content="content"
@@ -19,9 +17,7 @@
         </v-list-tile>
         <v-divider></v-divider>
         <v-card flat>
-          <v-subheader>
-            <v-icon>find_in_page</v-icon>Keywords:
-          </v-subheader>
+          <v-subheader> <v-icon>find_in_page</v-icon>Keywords: </v-subheader>
           <keywords
             :content="content"
             :maxKeywords="maxKeywords"
@@ -30,9 +26,7 @@
           ></keywords>
         </v-card>
         <v-divider></v-divider>
-        <v-subheader>
-          <v-icon>mood</v-icon>Sentiment:
-        </v-subheader>
+        <v-subheader> <v-icon>mood</v-icon>Sentiment: </v-subheader>
         <v-list-tile>
           <sentiment
             :content="content"
@@ -41,9 +35,7 @@
           ></sentiment>
         </v-list-tile>
         <v-divider></v-divider>
-        <v-subheader>
-          <v-icon>local_library</v-icon>Readability:
-        </v-subheader>
+        <v-subheader> <v-icon>local_library</v-icon>Readability: </v-subheader>
         <v-list-tile>
           <readability
             :content="content"
@@ -105,7 +97,12 @@ export default {
       this.newValue.sentiment = sentiment;
     },
     checkNewValueReady() {
-      if (this.newValue.keywords && this.newValue.readingTime && this.newValue.readingTime && this.newValue.sentiment) {
+      if (
+        this.newValue.keywords &&
+        this.newValue.readingTime &&
+        this.newValue.readingTime &&
+        this.newValue.sentiment
+      ) {
         this.newValue.lastAnalyzed = new Date().toLocaleString();
         this.$eventBus.$emit("setValue", this.newValue);
       }

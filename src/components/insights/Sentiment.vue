@@ -1,7 +1,13 @@
 <template>
   <v-flex>
-    <i class="em em-slightly_smiling_face" v-if="sentiment.valence == 'positive'"></i>
-    <i class="em em-white_frowning_face" v-else-if="sentiment.valence == 'negative'"></i>
+    <i
+      class="em em-slightly_smiling_face"
+      v-if="sentiment.valence == 'positive'"
+    ></i>
+    <i
+      class="em em-white_frowning_face"
+      v-else-if="sentiment.valence == 'negative'"
+    ></i>
     <i class="em em-neutral_face" v-else></i>
 
     <strong>{{ sentiment.valence }}</strong>
@@ -50,7 +56,9 @@ export default {
       return {
         polarity: tree.data.polarity,
         valence: tree.data.valence,
-        polarWords: size(filter(tree, node => (node.type = "WordNode" && node.data)))
+        polarWords: size(
+          filter(tree, node => (node.type = "WordNode" && node.data))
+        )
       };
     }
   }
