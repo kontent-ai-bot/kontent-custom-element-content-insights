@@ -6,9 +6,11 @@ On top of that, the custom element offers suggestions on how to improve your con
 ![Screenshot of custom element](kontent-ingishts-screenshot.png)
 
 ## Features
+
 The element accesses content from all of the linked text & rich text elements, joins it together, and analyzes it. Natural language processor [retextjs](https://github.com/retextjs) is used for most of the analytics & suggestions.
 
 ## Notes on using the element
+
 - Currently,  **english** is the only supported language.
 - The element is capable of processing **rich text** elements, however, due to current limitations in the custom element API, the *Preview API key* is required to access this functionality. This also means, that the element can access the currently edited version of the rich text element only after the rich text value has been saved and it might take a short while for the changes to propagate.
 - The element saves all of the basic metrics mentioned in the descripion above, however, the suggestions are not being saved at the moment
@@ -17,10 +19,13 @@ The element accesses content from all of the linked text & rich text elements, j
 ## Setup
 
 1. Deploy the code to a secure public host
-    * See [deploying section](#Deploying) for a really quick option
+
+    - See [deploying section](#Deploying) for a really quick option
+
 1. Follow the instructions in the [Kentico Kontent documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features#a-3--displaying-a-custom-element-in-kentico-kontent) to add the element to a content model.
-    * The `Hosted code URL` is where you deployed to in step 1
-    * Pass the necessary parameters as directed in the [JSON Parameters configuration](#json-parameters) section of this readme.
+
+    - The `Hosted code URL` is where you deployed to in step 1
+    - Pass the necessary parameters as directed in the [JSON Parameters configuration](#json-parameters) section of this readme.
 
 ## Deploying
 
