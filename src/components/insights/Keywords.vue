@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     analyzeContent(content) {
-      console.log(this.maxKeywords);
       this.keywords = this.extractPhrases(content).map(x => x.toLowerCase());
       this.$emit("save", this.keywords);
     },
