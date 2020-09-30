@@ -1,5 +1,8 @@
 # Content Insights
 
+[![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-kontent)
+![Node.js build CI](https://github.com/Kentico/kontent-custom-element-content-insights/workflows/Node.js%20build%20CI/badge.svg)
+
 Content Insights custom element lets you analyze content from text and rich text elements residing inside your content item. It analyses basic content properties like reading time, readability, and sentiment. It also generates configurable number of keywords from the written content.
 On top of that, the custom element offers suggestions on how to improve your content.
 
