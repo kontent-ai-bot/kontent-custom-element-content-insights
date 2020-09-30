@@ -3,7 +3,7 @@
     <v-flex>
       <v-list two-line>
         <v-subheader v-if="value && value.lastAnalyzed">
-          <v-icon>time</v-icon>
+          <v-icon>label</v-icon>
           Last analyzed: {{ value.lastAnalyzed }}
         </v-subheader>
         <v-divider></v-divider>

@@ -1,5 +1,5 @@
 <template>
-  <v-app light>
+  <v-app light style="overflow: hidden; height: 100%">
     <v-btn
       color="blue info"
       @click="analyze"
@@ -116,7 +116,6 @@ body {
   background-color: white !important;
 }
 #app {
-  width: 600px;
   margin: 0px auto;
   text-align: left;
   background-color: white !important;
@@ -133,8 +132,8 @@ a:focus {
 }
 
 button#analyze {
-  width: 100%;
-  margin: 0;
+  width: 80%;
+  margin: auto;
   margin-bottom: 5px;
   margin-top: 5px;
 }
