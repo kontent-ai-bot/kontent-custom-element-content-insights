@@ -137,6 +137,9 @@ button#analyze {
   margin: 0;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+button#analyzeinput:not(disabled) {
   background-color: #0a68f5 !important;
 }
 
