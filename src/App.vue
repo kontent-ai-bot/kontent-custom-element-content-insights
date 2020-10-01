@@ -1,5 +1,5 @@
 <template>
-  <v-app light style="overflow: hidden; height: 100%">
+  <v-app light>
     <v-btn
       color="blue info"
       @click="analyze"
