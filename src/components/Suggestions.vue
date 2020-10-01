@@ -3,8 +3,8 @@
     <v-flex id="suggestions">
       <p v-if="!loaded" style="text-align: center">
         Suggestions are available only after the text has been freshly analyzed.
-        <br />Please, press the
-        <strong>Analyze Content</strong> button to get suggestions.
+        <br />Please, press the <strong>Analyze Content</strong> button to get
+        suggestions.
       </p>
       <v-card v-if="loaded">
         <v-list dense>
@@ -24,7 +24,8 @@
                       color="#f05a22"
                       size="20"
                       style="float: right;color: white;"
-                    >{{item.items.length}}</v-avatar>
+                      >{{ item.items.length }}</v-avatar
+                    >
                     <v-icon v-else style="float:right;">check</v-icon>
                   </v-list-tile-title>
                 </v-list-tile-content>
@@ -62,7 +63,10 @@ export default {
           items: [],
           active: true,
           method: async content => {
-            this.populateMessages(0, await SuggestionClient.extractRepeatedWords(content));
+            this.populateMessages(
+              0,
+              await SuggestionClient.extractRepeatedWords(content)
+            );
           }
         },
         {
@@ -71,7 +75,10 @@ export default {
           name: "acronyms",
           items: [],
           method: async content => {
-            this.populateMessages(1, await SuggestionClient.extractAcronyms(content));
+            this.populateMessages(
+              1,
+              await SuggestionClient.extractAcronyms(content)
+            );
           }
         },
         {
@@ -80,7 +87,10 @@ export default {
           name: "passive",
           items: [],
           method: async content => {
-            this.populateMessagesWithActual(2, await SuggestionClient.extractPassive(content));
+            this.populateMessagesWithActual(
+              2,
+              await SuggestionClient.extractPassive(content)
+            );
           }
         },
         {
@@ -89,7 +99,10 @@ export default {
           name: "profanities",
           items: [],
           method: async content => {
-            this.populateMessages(3, await SuggestionClient.extractProfanities(content));
+            this.populateMessages(
+              3,
+              await SuggestionClient.extractProfanities(content)
+            );
           }
         },
         {
@@ -98,7 +111,10 @@ export default {
           name: "insensitive",
           items: [],
           method: async content => {
-            this.populateMessages(4, await SuggestionClient.extractEquality(content));
+            this.populateMessages(
+              4,
+              await SuggestionClient.extractEquality(content)
+            );
           }
         },
         {
@@ -107,7 +123,10 @@ export default {
           name: "weak",
           items: [],
           method: async content => {
-            this.populateMessages(5, await SuggestionClient.extractIntensify(content));
+            this.populateMessages(
+              5,
+              await SuggestionClient.extractIntensify(content)
+            );
           }
         }
       ]
@@ -136,7 +155,8 @@ export default {
       let consolidated = this.consolidateMessages(messages);
       for (let i = 0, message; (message = consolidated[i]); i++) {
         let title = `${message.message} in <em><strong>${message.actual}</strong></em>`;
-        if (this.showLineNumbers) title += ` on line(s) <strong>${message.lines.join(", ")}</strong>`;
+        if (this.showLineNumbers)
+          title += ` on line(s) <strong>${message.lines.join(", ")}</strong>`;
 
         let item = {
           title: title,
@@ -153,7 +173,8 @@ export default {
       let consolidated = this.consolidateMessages(messages);
       for (let i = 0, message; (message = consolidated[i]); i++) {
         let title = `${message.message}`;
-        if (this.showLineNumbers) title += ` on line(s) <strong>${message.lines.join(", ")}</strong>`;
+        if (this.showLineNumbers)
+          title += ` on line(s) <strong>${message.lines.join(", ")}</strong>`;
 
         let item = {
           title: title,
@@ -167,7 +188,9 @@ export default {
     consolidateMessages(messages) {
       let consolidated = [];
       for (let i = 0, message; (message = messages[i]); i++) {
-        let found = consolidated.filter(x => x.actual.toLowerCase() == message.actual.toLowerCase());
+        let found = consolidated.filter(
+          x => x.actual.toLowerCase() == message.actual.toLowerCase()
+        );
         if (found.length == 0) {
           let consolidatedItem = {
             actual: message.actual.toLowerCase(),
@@ -178,7 +201,8 @@ export default {
           if (message.chunk) consolidatedItem.chunks = [message.chunk];
           consolidated.push(consolidatedItem);
         } else {
-          if (!found[0].lines.includes(message.line)) found[0].lines.push(message.line);
+          if (!found[0].lines.includes(message.line))
+            found[0].lines.push(message.line);
           if (message.chunk) found[0].chunks.push(message.chunk);
         }
       }

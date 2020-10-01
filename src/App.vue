@@ -5,7 +5,8 @@
       @click="analyze"
       id="analyze"
       :disabled="element.disabled"
-    >Analyze Content</v-btn>
+      >Analyze Content</v-btn
+    >
     <v-layout column>
       <v-flex xs12 v-if="loading">
         <v-progress-linear :indeterminate="true"></v-progress-linear>
@@ -14,7 +15,11 @@
         <v-alert>{{ error }}</v-alert>
       </v-flex>
       <v-flex xs12 v-show="!loading && value">
-        <content-analytics :element="element" :context="context" :value="value"></content-analytics>
+        <content-analytics
+          :element="element"
+          :context="context"
+          :value="value"
+        ></content-analytics>
       </v-flex>
     </v-layout>
   </v-app>
@@ -111,7 +116,6 @@ body {
   background-color: white !important;
 }
 #app {
-  width: 600px;
   margin: 0px auto;
   text-align: left;
   background-color: white !important;
@@ -128,10 +132,13 @@ a:focus {
 }
 
 button#analyze {
-  width: 100%;
-  margin: 0;
+  width: 80%;
+  margin: auto;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+button#analyzeinput:not(disabled) {
   background-color: #0a68f5 !important;
 }
 
