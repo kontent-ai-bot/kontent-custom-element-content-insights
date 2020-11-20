@@ -3,13 +3,11 @@
     <v-flex>
       <v-list two-line>
         <v-subheader v-if="value && value.lastAnalyzed">
-          <v-icon>time</v-icon>
-          Last analyzed: {{value.lastAnalyzed}}
+          <v-icon>label</v-icon>
+          Last analyzed: {{ value.lastAnalyzed }}
         </v-subheader>
         <v-divider></v-divider>
-        <v-subheader>
-          <v-icon>alarm</v-icon>Reading Time:
-        </v-subheader>
+        <v-subheader> <v-icon>alarm</v-icon>Reading Time: </v-subheader>
         <v-list-tile>
           <reading-time
             :content="content"
@@ -19,9 +17,7 @@
         </v-list-tile>
         <v-divider></v-divider>
         <v-card flat>
-          <v-subheader>
-            <v-icon>find_in_page</v-icon>Keywords:
-          </v-subheader>
+          <v-subheader> <v-icon>find_in_page</v-icon>Keywords: </v-subheader>
           <keywords
             :content="content"
             :maxKeywords="maxKeywords"
@@ -30,20 +26,12 @@
           ></keywords>
         </v-card>
         <v-divider></v-divider>
-        <v-subheader>
-          <v-icon>mood</v-icon>Sentiment:
-        </v-subheader>
+        <v-subheader> <v-icon>mood</v-icon>Sentiment: </v-subheader>
         <v-list-tile>
-          <sentiment
-            :content="content"
-            :value="value ? value.sentiment : null"
-            @save="setSentiment"
-          ></sentiment>
+          <sentiment :content="content" :value="value ? value.sentiment : null" @save="setSentiment"></sentiment>
         </v-list-tile>
         <v-divider></v-divider>
-        <v-subheader>
-          <v-icon>local_library</v-icon>Readability:
-        </v-subheader>
+        <v-subheader> <v-icon>local_library</v-icon>Readability: </v-subheader>
         <v-list-tile>
           <readability
             :content="content"
@@ -52,9 +40,7 @@
           ></readability>
         </v-list-tile>
         <v-divider v-if="showSuggestions"></v-divider>
-        <v-subheader v-if="showSuggestions">
-          <v-icon>check_box</v-icon>Suggestions:
-        </v-subheader>
+        <v-subheader v-if="showSuggestions"> <v-icon>check_box</v-icon>Suggestions: </v-subheader>
       </v-list>
     </v-flex>
   </v-layout>
@@ -71,7 +57,7 @@ export default {
     Keywords,
     Sentiment,
     ReadingTime,
-    Readability
+    Readability,
   },
   watch: {
     content() {
@@ -79,13 +65,13 @@ export default {
         keywords: null,
         readability: null,
         readingTime: null,
-        sentiment: null
+        sentiment: null,
       };
-    }
+    },
   },
   data() {
     return {
-      newValue: {}
+      newValue: {},
     };
   },
   methods: {
@@ -109,8 +95,8 @@ export default {
         this.newValue.lastAnalyzed = new Date().toLocaleString();
         this.$eventBus.$emit("setValue", this.newValue);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

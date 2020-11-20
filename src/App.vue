@@ -107,7 +107,6 @@ body {
   background-color: white !important;
 }
 #app {
-  width: 600px;
   margin: 0px auto;
   text-align: left;
   background-color: white !important;
@@ -124,10 +123,13 @@ a:focus {
 }
 
 button#analyze {
-  width: 100%;
-  margin: 0;
+  width: 80%;
+  margin: auto;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+button#analyzeinput:not(disabled) {
   background-color: #0a68f5 !important;
 }
 

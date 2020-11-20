@@ -7,6 +7,11 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "dependencies": {
     "@kentico/kontent-delivery": "^9.2.1",
     "dictionary-en-gb": "^2.2.2",
@@ -40,6 +45,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^5.0.0",
+    "husky": "^4.3.0",
     "prettier": "^1.19.1",
     "vue-template-compiler": "^2.6.12"
   },

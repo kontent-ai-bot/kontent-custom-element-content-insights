@@ -1,19 +1,16 @@
 <template>
   <v-container>
-    <v-tabs dark>
-      <v-tab style="margin-left: 20px">Content Insights</v-tab>
-      <v-tabs-slider style="height: 5px; margin-left: 20px; background-color: #0a68f5 !important"></v-tabs-slider>
-    </v-tabs>
-    <v-tabs-items>
-      <v-tab-item>
+    <v-card>
+      <v-card-text>
+        <v-card-title><strong>Content Insights</strong></v-card-title>
         <insights :maxKeywords="maxKeywords" :showSuggestions="suggestions.length > 0" :value="value"></insights>
         <suggestions
           v-if="suggestions.length > 0"
           :suggestions="suggestions"
           :showLineNumbers="showLineNumbersInSuggestions"
         ></suggestions>
-      </v-tab-item>
-    </v-tabs-items>
+      </v-card-text>
+    </v-card>
   </v-container>
 </template>
 <script>
