@@ -1,7 +1,8 @@
 <template>
   <v-app light>
     <v-layout column>
-      <v-flex xs12 v-if="loading">
+      <v-flex xs12 v-if="loading" class="pt-4">
+        <h3 class="text-center">Analyzing...</h3>
         <v-progress-linear :indeterminate="true"></v-progress-linear>
       </v-flex>
       <v-flex xs12 v-if="error">
@@ -34,6 +35,10 @@ export default {
     /* bind events */
     this.$eventBus.$on("stopLoading", () => {
       this.loading = false;
+    });
+
+    this.$eventBus.$on("startLoading", () => {
+      this.loading = true;
     });
 
     this.$eventBus.$on("resize", this.updateSize);

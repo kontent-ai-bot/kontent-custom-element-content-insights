@@ -75,6 +75,7 @@ export default {
       this.listeningTimeout = setTimeout(() => {
         this.$eventBus.$emit("analyze");
       }, this.listeningTimeoutSeconds * 1000);
+      this.$eventBus.$emit("startLoading");
     },
     listenForChanges() {
       let codenames = [...this.getTextElementsCodenames(), ...this.getRichTextElementsCodenames()];
