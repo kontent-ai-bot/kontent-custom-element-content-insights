@@ -88,8 +88,8 @@ export default {
       this.error = err;
     },
     setValue(value) {
-      this.value = value;
-      this.save(value);
+      this.value = JSON.parse(JSON.stringify(value));
+      this.save(this.value);
       this.loading = false;
       this.updateSize();
     },

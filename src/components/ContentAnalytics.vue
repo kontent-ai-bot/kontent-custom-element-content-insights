@@ -64,8 +64,7 @@ export default {
     },
   },
   methods: {
-    elementChangedCallback(changedElements) {
-      console.log(changedElements);
+    elementChangedCallback() {
       if (this.listeningTimeout) {
         clearTimeout(this.listeningTimeout);
       }

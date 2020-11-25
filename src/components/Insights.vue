@@ -66,6 +66,7 @@ export default {
         readability: null,
         readingTime: null,
         sentiment: null,
+        lastAnalyzed: null,
       };
     },
   },
