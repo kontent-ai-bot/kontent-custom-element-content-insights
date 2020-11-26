@@ -120,6 +120,7 @@ export default {
   },
   methods: {
     async analyzeContent(content) {
+      this.clearItems();
       this.loaded = true;
       for (let i = 0, suggestion; (suggestion = this.itemsFromConfig[i]); i++) {
         try {
@@ -184,6 +185,11 @@ export default {
     pushItem(index, item) {
       let found = this.items[index].items.filter((i) => i.title == item.title);
       if (found.length == 0) this.items[index].items.push(item);
+    },
+    clearItems() {
+      for (let i = 0; i < this.items.length; i++) {
+        this.items[i].items = [];
+      }
     },
     resize() {
       setTimeout(() => {
