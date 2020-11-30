@@ -88,7 +88,7 @@ export default {
       this.error = err;
     },
     setValue(value) {
-      this.value = JSON.parse(JSON.stringify(value));
+      this.value = Object.assign({}, value);
       this.save(this.value);
       this.loading = false;
       this.updateSize();
