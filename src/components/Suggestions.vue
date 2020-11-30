@@ -1,11 +1,7 @@
 <template>
   <v-layout row>
     <v-flex id="suggestions">
-      <p v-if="!loaded" style="text-align: center">
-        Suggestions are available only after the text has been freshly analyzed.
-        <br />Please, press the <strong>Analyze Content</strong> button to get
-        suggestions.
-      </p>
+      <p v-if="!loaded" style="text-align: center"></p>
       <v-card v-if="loaded">
         <v-list dense>
           <v-list-group
@@ -23,10 +19,10 @@
                       v-if="item.items.length > 0"
                       color="#f05a22"
                       size="20"
-                      style="float: right;color: white;"
+                      style="float: right; color: white"
                       >{{ item.items.length }}</v-avatar
                     >
-                    <v-icon v-else style="float:right;">check</v-icon>
+                    <v-icon v-else style="float: right">check</v-icon>
                   </v-list-tile-title>
                 </v-list-tile-content>
               </v-list-tile>
@@ -62,86 +58,69 @@ export default {
           name: "repeated",
           items: [],
           active: true,
-          method: async content => {
-            this.populateMessages(
-              0,
-              await SuggestionClient.extractRepeatedWords(content)
-            );
-          }
+          method: async (content) => {
+            this.populateMessages(0, await SuggestionClient.extractRepeatedWords(content));
+          },
         },
         {
           action: "atm",
           title: "Redundant Acronyms",
           name: "acronyms",
           items: [],
-          method: async content => {
-            this.populateMessages(
-              1,
-              await SuggestionClient.extractAcronyms(content)
-            );
-          }
+          method: async (content) => {
+            this.populateMessages(1, await SuggestionClient.extractAcronyms(content));
+          },
         },
         {
           action: "headset_mic",
           title: "Passive Voice",
           name: "passive",
           items: [],
-          method: async content => {
-            this.populateMessagesWithActual(
-              2,
-              await SuggestionClient.extractPassive(content)
-            );
-          }
+          method: async (content) => {
+            this.populateMessagesWithActual(2, await SuggestionClient.extractPassive(content));
+          },
         },
         {
           action: "speaker_notes_off",
           title: "Profanities",
           name: "profanities",
           items: [],
-          method: async content => {
-            this.populateMessages(
-              3,
-              await SuggestionClient.extractProfanities(content)
-            );
-          }
+          method: async (content) => {
+            this.populateMessages(3, await SuggestionClient.extractProfanities(content));
+          },
         },
         {
           action: "mood_bad",
           title: "Insensitive or inconsiderate language",
           name: "insensitive",
           items: [],
-          method: async content => {
-            this.populateMessages(
-              4,
-              await SuggestionClient.extractEquality(content)
-            );
-          }
+          method: async (content) => {
+            this.populateMessages(4, await SuggestionClient.extractEquality(content));
+          },
         },
         {
           action: "brightness_6",
           title: "Weak and mitigating wording",
           name: "weak",
           items: [],
-          method: async content => {
-            this.populateMessages(
-              5,
-              await SuggestionClient.extractIntensify(content)
-            );
-          }
-        }
-      ]
+          method: async (content) => {
+            this.populateMessages(5, await SuggestionClient.extractIntensify(content));
+          },
+        },
+      ],
     };
   },
   computed: {
     itemsFromConfig() {
-      return this.items.filter(i => this.suggestions.includes(i.name));
-    }
+      return this.items.filter((i) => this.suggestions.includes(i.name));
+    },
   },
   created() {
     this.$eventBus.$on("newContentReady", this.analyzeContent);
   },
   methods: {
     async analyzeContent(content) {
+      this.clearItems();
       this.loaded = true;
       for (let i = 0, suggestion; (suggestion = this.itemsFromConfig[i]); i++) {
         try {
@@ -155,14 +134,13 @@ export default {
       let consolidated = this.consolidateMessages(messages);
       for (let i = 0, message; (message = consolidated[i]); i++) {
         let title = `${message.message} in <em><strong>${message.actual}</strong></em>`;
-        if (this.showLineNumbers)
-          title += ` on line(s) <strong>${message.lines.join(", ")}</strong>`;
+        if (this.showLineNumbers) title += ` on line(s) <strong>${message.lines.join(", ")}</strong>`;
 
         let item = {
           title: title,
           action: "warning",
           color: "#f05a22",
-          actual: message.actual
+          actual: message.actual,
         };
 
         if (message.chunks) item.chunks = message.chunks;
@@ -173,14 +151,13 @@ export default {
       let consolidated = this.consolidateMessages(messages);
       for (let i = 0, message; (message = consolidated[i]); i++) {
         let title = `${message.message}`;
-        if (this.showLineNumbers)
-          title += ` on line(s) <strong>${message.lines.join(", ")}</strong>`;
+        if (this.showLineNumbers) title += ` on line(s) <strong>${message.lines.join(", ")}</strong>`;
 
         let item = {
           title: title,
           action: "warning",
           color: "#f05a22",
-          actual: message.actual
+          actual: message.actual,
         };
         this.pushItem(index, item);
       }
@@ -188,36 +165,38 @@ export default {
     consolidateMessages(messages) {
       let consolidated = [];
       for (let i = 0, message; (message = messages[i]); i++) {
-        let found = consolidated.filter(
-          x => x.actual.toLowerCase() == message.actual.toLowerCase()
-        );
+        let found = consolidated.filter((x) => x.actual.toLowerCase() == message.actual.toLowerCase());
         if (found.length == 0) {
           let consolidatedItem = {
             actual: message.actual.toLowerCase(),
             message: message.message,
-            lines: [message.line]
+            lines: [message.line],
           };
 
           if (message.chunk) consolidatedItem.chunks = [message.chunk];
           consolidated.push(consolidatedItem);
         } else {
-          if (!found[0].lines.includes(message.line))
-            found[0].lines.push(message.line);
+          if (!found[0].lines.includes(message.line)) found[0].lines.push(message.line);
           if (message.chunk) found[0].chunks.push(message.chunk);
         }
       }
       return consolidated;
     },
     pushItem(index, item) {
-      let found = this.items[index].items.filter(i => i.title == item.title);
+      let found = this.items[index].items.filter((i) => i.title == item.title);
       if (found.length == 0) this.items[index].items.push(item);
+    },
+    clearItems() {
+      for (let i = 0; i < this.items.length; i++) {
+        this.items[i].items = [];
+      }
     },
     resize() {
       setTimeout(() => {
         this.$eventBus.$emit("resize");
       }, 300);
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

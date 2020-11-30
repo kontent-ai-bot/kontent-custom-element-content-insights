@@ -1,25 +1,15 @@
 <template>
   <v-app light>
-    <v-btn
-      color="blue info"
-      @click="analyze"
-      id="analyze"
-      :disabled="element.disabled"
-      >Analyze Content</v-btn
-    >
     <v-layout column>
-      <v-flex xs12 v-if="loading">
+      <v-flex xs12 v-if="loading" class="pt-4">
+        <h3 class="text-center">Analyzing...</h3>
         <v-progress-linear :indeterminate="true"></v-progress-linear>
       </v-flex>
       <v-flex xs12 v-if="error">
         <v-alert>{{ error }}</v-alert>
       </v-flex>
       <v-flex xs12 v-show="!loading && value">
-        <content-analytics
-          :element="element"
-          :context="context"
-          :value="value"
-        ></content-analytics>
+        <content-analytics :element="element" :context="context" :value="value"></content-analytics>
       </v-flex>
     </v-layout>
   </v-app>
@@ -30,21 +20,25 @@ import ContentAnalytics from "./components/ContentAnalytics";
 export default {
   name: "app",
   components: {
-    ContentAnalytics
+    ContentAnalytics,
   },
   data() {
     return {
       element: {},
       context: {},
-      loading: false,
+      loading: true,
       error: null,
-      value: null
+      value: null,
     };
   },
   created() {
     /* bind events */
     this.$eventBus.$on("stopLoading", () => {
       this.loading = false;
+    });
+
+    this.$eventBus.$on("startLoading", () => {
+      this.loading = true;
     });
 
     this.$eventBus.$on("resize", this.updateSize);
@@ -67,6 +61,7 @@ export default {
       this.loaded = true;
       this.updateSize();
       this.changeCursor(element.disabled);
+      this.loading = false;
     },
     handleDisable(disableState) {
       this.changeCursor(disableState);
@@ -79,7 +74,7 @@ export default {
       CustomElement.setValue(toSave);
     },
     updateSize() {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         const height = Math.max(
           document.body.scrollHeight,
           document.body.offsetHeight,
@@ -89,24 +84,20 @@ export default {
         CustomElement.setHeight(height);
       });
     },
-    analyze() {
-      this.loading = true;
-      this.$eventBus.$emit("analyze");
-    },
     catchError(err) {
       this.error = err;
     },
     setValue(value) {
-      this.value = value;
-      this.save(value);
+      this.value = Object.assign({}, value);
+      this.save(this.value);
       this.loading = false;
       this.updateSize();
     },
     changeCursor(disabled) {
       if (disabled) document.body.style.cursor = "not-allowed";
       else document.body.style.cursor = "auto";
-    }
-  }
+    },
+  },
 };
 </script>
 

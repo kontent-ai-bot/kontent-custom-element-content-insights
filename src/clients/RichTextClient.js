@@ -12,15 +12,16 @@ export default class RichTextClient {
     });
   }
 
-  getRichTextValue(sourceItemCodename, richTextElementCodename) {
+  getRichTextValue(sourceItemId, richTextElementCodename) {
     return new Promise((resolve, reject) => {
       try {
         this.deliveryClient
-          .item(sourceItemCodename)
+          .items()
+          .equalsFilter('system.id', sourceItemId)
           .elementsParameter([richTextElementCodename])
           .toPromise()
           .then(response => {
-            let htmlContent = response.item[richTextElementCodename].value;
+            let htmlContent = response.items[0][richTextElementCodename].value;
             let content = this._removeHTML(htmlContent);
             resolve(content);
           });

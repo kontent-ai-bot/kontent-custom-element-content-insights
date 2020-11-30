@@ -28,11 +28,7 @@
         <v-divider></v-divider>
         <v-subheader> <v-icon>mood</v-icon>Sentiment: </v-subheader>
         <v-list-tile>
-          <sentiment
-            :content="content"
-            :value="value ? value.sentiment : null"
-            @save="setSentiment"
-          ></sentiment>
+          <sentiment :content="content" :value="value ? value.sentiment : null" @save="setSentiment"></sentiment>
         </v-list-tile>
         <v-divider></v-divider>
         <v-subheader> <v-icon>local_library</v-icon>Readability: </v-subheader>
@@ -44,9 +40,7 @@
           ></readability>
         </v-list-tile>
         <v-divider v-if="showSuggestions"></v-divider>
-        <v-subheader v-if="showSuggestions">
-          <v-icon>check_box</v-icon>Suggestions:
-        </v-subheader>
+        <v-subheader v-if="showSuggestions"> <v-icon>check_box</v-icon>Suggestions: </v-subheader>
       </v-list>
     </v-flex>
   </v-layout>
@@ -63,7 +57,7 @@ export default {
     Keywords,
     Sentiment,
     ReadingTime,
-    Readability
+    Readability,
   },
   watch: {
     content() {
@@ -71,13 +65,14 @@ export default {
         keywords: null,
         readability: null,
         readingTime: null,
-        sentiment: null
+        sentiment: null,
+        lastAnalyzed: null,
       };
-    }
+    },
   },
   data() {
     return {
-      newValue: {}
+      newValue: {},
     };
   },
   methods: {
@@ -97,17 +92,12 @@ export default {
       this.newValue.sentiment = sentiment;
     },
     checkNewValueReady() {
-      if (
-        this.newValue.keywords &&
-        this.newValue.readingTime &&
-        this.newValue.readingTime &&
-        this.newValue.sentiment
-      ) {
+      if (this.newValue.keywords && this.newValue.readingTime && this.newValue.readingTime && this.newValue.sentiment) {
         this.newValue.lastAnalyzed = new Date().toLocaleString();
         this.$eventBus.$emit("setValue", this.newValue);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
