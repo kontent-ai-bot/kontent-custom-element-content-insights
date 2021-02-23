@@ -100,5 +100,3 @@ See [Vue CLI Configuration Reference](https://cli.vuejs.org/config/).
 ## Contributors
 
 Originally contributed by [@RostaStriz](https://github.com/strizr)
-
-![Analytics](https://kentico-ga-beacon.azurewebsites.net/api/UA-69014260-4/Kentico/kontent-custom-element-content-insights?pixel)
