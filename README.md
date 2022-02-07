@@ -25,7 +25,7 @@ The element accesses content from all of the linked text & rich text elements, j
 
     - See [deploying section](#Deploying) for a really quick option
 
-1. Follow the instructions in the [Kentico Kontent documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features#a-3--displaying-a-custom-element-in-kentico-kontent) to add the element to a content model.
+1. Follow the instructions in the [Kentico Kontent documentation](https://kontent.ai/learn/tutorials/develop-apps/integrate/content-editing-extensions#a-displaying-your-custom-editor-in-kontent) to add the element to a content model.
 
     - The `Hosted code URL` is where you deployed to in step 1
     - Pass the necessary parameters as directed in the [JSON Parameters configuration](#configuring-the-custom-element) section of this readme.
@@ -46,7 +46,7 @@ The JSON parameters required as as follows:
 |---------| ---- | ----- | ----------- |
 |* if using text elements|textElements|array| This is the array of text elements you want to have analyzed. **The specified elements must also be set as readable for the custom element** (_"Allow the custom element to read values of specific elements"_ section in custom element settings). |
 |* if using rich text elements|richTextElements|array| This is the array of rich text elements you want to have analyzed. If you wish to read from rich text elements, you have to provide the previewApiKey |
-|* if using rich text elements|previewApiKey|string| This is the access key for your [Kontent Delivery Preview API](https://docs.kontent.ai/reference/delivery-api#section/Production-vs.-Preview).|
+|* if using rich text elements|previewApiKey|string| This is the access key for your [Kontent Delivery Preview API](https://kontent.ai/learn/reference/delivery-api#section/Production-vs.-Preview).|
 |*|maxKeywords|int| This is the maximum number of keywords the element will generate. If the text is too short or the language processor is not able to find sufficient number of keywords, the element can potentially return less keywords than the specified value suggests.|
 ||Suggestions|array| This specifies categories of suggestions generated for the given content by the language processor. You can pick whatever combination you'd like from the provided list below in example. If you omit the suggestion property entirely, you'll automatically have access to all available suggestions. If you wish to omit suggestions all together, just set `"suggestions" : []`.|
 
